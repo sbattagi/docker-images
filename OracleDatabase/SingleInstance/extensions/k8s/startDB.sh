@@ -27,7 +27,7 @@ for i in {1..10}; do
    startup nomount;
    exit;
 EOF
-  if pgrep -f pmon; then
+  if pgrep -f pmon > /dev/null; then
     break
   fi
   # Sometimes DB locks of dead container are not released immediately
@@ -36,13 +36,13 @@ EOF
 done
 
 # startup can get into a wait mode here
-$ORACLE_BASE/scripts/setup/$SWAP_LOCK_FILE
+$ORACLE_BASE/scripts/extensions/setup/$SWAP_LOCK_FILE
 
 # Start Listener
 lsnrctl start
 
 condn_sql=""
-if ! pgrep -f pmon; then
+if ! pgrep -f pmon > /dev/null; then
   # if Oracle processes die for some reason by the time lock is acquired
   condn_sql="shutdown abort;
   startup nomount;
