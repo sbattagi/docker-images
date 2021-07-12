@@ -29,11 +29,11 @@ Please refer [README.md](https://github.com/oracle/docker-images/blob/main/Oracl
 
 The binaries can be downloaded from the [Oracle Software Delivery Cloud](https://edelivery.oracle.com). Search for "Oracle SOA Suite" and download the version which is required, for e.g. 12.2.1.4.0 is available under `Oracle Fusion Middleware 12c (12.2.1.4.0) SOA Suite and Business Process Management` software. Also search for 'Oracle Service Bus' and 'Oracle B2B'. Download the `Oracle Fusion Middleware 12c (12.2.1.4.0) Service Bus` and `Oracle Fusion Middleware 12c (12.2.1.4.0) B2B and Healthcare` binaries respectively. 
 
+>NOTE: In this release, Oracle B2B is not supported to be configured, but the installer is required for completeness.
+
 Extract the downloaded zip files and copy `fmw_12.2.1.4.0_soa.jar`, `fmw_12.2.1.4.0_osb.jar` and `fmw_12.2.1.4.0_b2bhealthcare.jar` files under `dockerfiles/12.2.1.4` for building Oracle SOA 12.2.1.4 image. 
 
 The Dockerfile `dockerfiles/12.2.1.4/Dockerfile` expects the Oracle SOA Suite installation binaries names as mentioned above. In case if the downloaded jar(s) names does not match with the above, make sure to rename them to match the same. Also, if the checksum of these binaries does not match with the default values mentioned in the `dockerfiles/12.2.1.4/install/soasuite.download` file, then use '-s' option in the image build command, to skip the checksum validation.
-
->NOTE: In this release, Oracle B2B is not supported to be configured, but the installer is required for completeness.
 
 To build the SOA image with patches, you need to download and drop the patch zip files (for e.g. `p29928100_122134_Generic.zip`) into the `patches/` folder under the version which is required, for e.g. for `12.2.1.4` the folder is `12.2.1.4/patches`. Similarly, to build the image by including the OPatch patch, download and drop the OPatch patch zip file (for e.g. `p28186730_139424_Generic.zip`) into the `opatch_patch/` folder. Then run the `buildDockerImage.sh` script as mentioned below:
 
